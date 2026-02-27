@@ -410,8 +410,9 @@
         // Load trades data
         async function loadDashboard() {
             try {
-                // Try to fetch live data from GitHub raw content
-                const response = await fetch('https://raw.githubusercontent.com/pesiss/trading-dashboard-v2/main/all_trades.json', {
+                // Try to fetch live data from GitHub raw content with cache busting
+                const cacheBuster = new Date().getTime();
+                const response = await fetch(`https://raw.githubusercontent.com/pesiss/trading-dashboard-v2/main/all_trades.json?cb=${cacheBuster}`, {
                     cache: 'no-store'
                 });
 
